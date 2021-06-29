@@ -44,24 +44,11 @@ namespace WindowsFormsApp4.View
 
         private void buttonLogIn_Click(object sender, EventArgs e)
         {
-            User user = authoPresenter.repository.GetUserByName(UserName);
-            if (user != null)
+            if (authoPresenter.LogIn(UserName, Pass))
             {
-                if(Pass == user.Password)
-                {
-                    authoPresenter.ErrorMessage();
-                    this.Visible = false;
-                    SignInForm signInForm = new SignInForm(this);
-                    signInForm.Show();
-                }
-                else
-                {
-                    authoPresenter.ErrorMessage("Password is incorrect!");
-                }
-            }
-            else
-            {
-                authoPresenter.ErrorMessage("No such user is registered!");
+                this.Visible = false;
+                SignInForm signInForm = new SignInForm(this);
+                signInForm.Show();
             }
         }
 

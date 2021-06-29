@@ -25,5 +25,27 @@ namespace WindowsFormsApp4.Presenter
         {
             view.ErrorMessage = error;
         }
+
+        public bool LogIn(string UserName, string Pass)
+        {
+            User user = view.authoPresenter.repository.GetUserByName(UserName);
+            if (user != null)
+            {
+                if (Pass == user.Password)
+                {
+                    ErrorMessage();
+                    return true;
+                }
+                else
+                {
+                    ErrorMessage("Password is incorrect!");
+                }
+            }
+            else
+            {
+                ErrorMessage("No such user is registered!");
+            }
+            return false;
+        }
     }
 }

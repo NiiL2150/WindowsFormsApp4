@@ -17,8 +17,8 @@ namespace WindowsFormsApp4.View
         public SignInForm(AuthoForm authoForm)
         {
             parentForm = authoForm;
-            labelError.Text = "";
             InitializeComponent();
+            labelError.Text = "";
         }
 
         public string UserName
@@ -46,23 +46,9 @@ namespace WindowsFormsApp4.View
 
         private void buttonSignIn_Click(object sender, EventArgs e)
         {
-            User user = parentForm.authoPresenter.repository.GetUserByName(UserName);
-            if (user == null)
+            if (signInPresenter.SignIn(UserName, Pass))
             {
-                if(UserName.Length!=0 && Pass.Length != 0)
-                {
-                    signInPresenter.ErrorMessage();
-                    parentForm.authoPresenter.repository.SaveUser(new User(UserName, Pass));
-                    this.Close();
-                }
-                else
-                {
-                    signInPresenter.ErrorMessage("Can't be null!");
-                }
-            }
-            else
-            {
-                signInPresenter.ErrorMessage("This user already exists!");
+                this.Close();
             }
         }
 
