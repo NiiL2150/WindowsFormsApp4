@@ -62,6 +62,7 @@ namespace WindowsFormsApp4.Repository
             {
                 findUser = user;
             }
+            SaveUsers(users);
         }
 
         public void SaveUsers(List<User> _users)
