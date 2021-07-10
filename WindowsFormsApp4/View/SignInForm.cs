@@ -14,11 +14,9 @@ namespace WindowsFormsApp4.View
 {
     public partial class SignInForm : Form, ISignInView
     {
-        public SignInForm(AuthoForm authoForm)
+        public SignInForm()
         {
-            parentForm = authoForm;
             InitializeComponent();
-            labelError.Text = "";
         }
 
         public string UserName
@@ -37,24 +35,22 @@ namespace WindowsFormsApp4.View
             set { labelError.Text = value; }
         }
         public SignInPresenter signInPresenter { get; set; }
-        public AuthoForm parentForm { get; set; }
+        public IAuthoView parentForm { get; set; }
 
         private void SignInForm_Load(object sender, EventArgs e)
         {
 
         }
 
-        private void buttonSignIn_Click(object sender, EventArgs e)
+        public void CloseReturn()
         {
-            if (signInPresenter.SignIn(UserName, Pass))
-            {
-                this.Close();
-            }
+            parentForm.Vision = true;
+            this.Close();
         }
 
-        private void SignInForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void buttonSignIn_Click(object sender, EventArgs e)
         {
-            parentForm.Visible = true;
+            signInPresenter.SignIn(UserName, Pass);
         }
     }
 }

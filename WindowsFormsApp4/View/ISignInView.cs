@@ -13,6 +13,7 @@ namespace WindowsFormsApp4.View
         string Pass { get; set; }
         string ErrorMessage { get; set; }
         SignInPresenter signInPresenter { get; set; }
-        AuthoForm parentForm { get; set; }
+        IAuthoView parentForm { get; set; }
+        void CloseReturn();
     }
 }

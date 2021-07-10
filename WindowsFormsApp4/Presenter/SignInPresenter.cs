@@ -11,10 +11,12 @@ namespace WindowsFormsApp4.Presenter
     public class SignInPresenter
     {
         ISignInView view;
-        public SignInPresenter(ISignInView singInForm)
+        public SignInPresenter(ISignInView singInForm, IAuthoView authoView)
         {
             this.view = singInForm;
             singInForm.signInPresenter = this;
+            view.parentForm = authoView;
+            ErrorMessage();
         }
 
         public void ErrorMessage(string error = "")
@@ -22,7 +24,7 @@ namespace WindowsFormsApp4.Presenter
             view.ErrorMessage = error;
         }
 
-        public bool SignIn(string UserName, string Pass)
+        public void SignIn(string UserName, string Pass)
         {
             User user = view.parentForm.authoPresenter.repository.GetUserByName(UserName);
             if (user == null)
@@ -31,7 +33,7 @@ namespace WindowsFormsApp4.Presenter
                 {
                     ErrorMessage();
                     view.parentForm.authoPresenter.repository.SaveUser(new User(UserName, Pass));
-                    return true;
+                    view.CloseReturn();
                 }
                 else
                 {
@@ -42,7 +44,6 @@ namespace WindowsFormsApp4.Presenter
             {
                 ErrorMessage("This user already exists!");
             }
-            return false;
         }
     }
 }

@@ -10,9 +10,12 @@ namespace WindowsFormsApp4.View
 {
     public interface IAuthoView
     {
+        bool Vision { get; set; }
         string UserName { get; set; }
         string Pass { get; set; }
         string ErrorMessage { get; set; }
         AuthoPresenter authoPresenter { get; set; }
+        void SignIn();
+        void LogIn(User user);
     }
 }

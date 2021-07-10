@@ -38,6 +38,10 @@ namespace WindowsFormsApp4.Repository
                 new User("NiiL2150", "real_password"),
                 new User("admin", "admin")
             };
+            foreach (var item in userList)
+            {
+                item.Posts.Add($"Hello, my name is {item.Name} and I use this social network!");
+            }
             SaveUsers(userList);
         }
 
@@ -56,6 +60,7 @@ namespace WindowsFormsApp4.Repository
             User findUser = (users.Find(x => x.Name == user.Name));
             if (findUser == null)
             {
+                user.Posts.Add($"Hello, my name is {user.Name} and I use this social network!");
                 users.Add(user);
             }
             else

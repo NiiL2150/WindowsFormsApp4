@@ -62,6 +62,7 @@ namespace WindowsFormsApp4.View
             // 
             this.textBoxPassword.Location = new System.Drawing.Point(11, 83);
             this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
             this.textBoxPassword.Size = new System.Drawing.Size(100, 20);
             this.textBoxPassword.TabIndex = 11;
             // 
@@ -103,8 +104,7 @@ namespace WindowsFormsApp4.View
             this.Controls.Add(this.textBoxUsername);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SignInForm";
-            this.Text = "SignInForm";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SignInForm_FormClosing);
+            this.Text = "Sign In";
             this.Load += new System.EventHandler(this.SignInForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

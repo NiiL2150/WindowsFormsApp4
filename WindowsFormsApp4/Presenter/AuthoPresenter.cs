@@ -26,7 +26,7 @@ namespace WindowsFormsApp4.Presenter
             view.ErrorMessage = error;
         }
 
-        public bool LogIn(string UserName, string Pass)
+        public void LogIn(string UserName, string Pass)
         {
             User user = view.authoPresenter.repository.GetUserByName(UserName);
             if (user != null)
@@ -34,7 +34,7 @@ namespace WindowsFormsApp4.Presenter
                 if (Pass == user.Password)
                 {
                     ErrorMessage();
-                    return true;
+                    view.LogIn(user);
                 }
                 else
                 {
@@ -45,7 +45,11 @@ namespace WindowsFormsApp4.Presenter
             {
                 ErrorMessage("No such user is registered!");
             }
-            return false;
+        }
+
+        public void SignIn()
+        {
+            view.SignIn();
         }
     }
 }
